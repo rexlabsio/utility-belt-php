@@ -1,3 +1,9 @@
+# Deprecated
+
+This library isn't in active development. Various other collection libraries provide most functionality that we need out of the box.
+
+Bug fixes only.
+
 # UtilityBelt
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
