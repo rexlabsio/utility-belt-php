@@ -1,7 +1,10 @@
-<?php namespace Rexlabs\UtilityBelt\Tests;
+<?php
+
+namespace Rexlabs\UtilityBelt\Tests\Actual;
 
 use Exception;
 use Rexlabs\UtilityBelt\CollectionUtility;
+use Rexlabs\UtilityBelt\Tests\TestCase;
 
 class CollectionUtilityTest extends TestCase
 {
@@ -327,7 +330,7 @@ class CollectionUtilityTest extends TestCase
         $filtered = CollectionUtility::findFirstWhere($items, ["a" => 1]);
         $this->assertEquals(["a" => 1], $filtered);
 
-        list($key, $value) = CollectionUtility::findFirstWhere($items, ["a" => 2], null, true);
+        [$key, $value] = CollectionUtility::findFirstWhere($items, ["a" => 2], null, true);
         $this->assertEquals("B", $key);
         $this->assertEquals(["a" => 2], $value);
 
@@ -347,7 +350,7 @@ class CollectionUtilityTest extends TestCase
         $this->assertEquals(["a" => 2], $filtered);
 
         //Key return
-        list($key, $value) = CollectionUtility::findFirstWhereNot($items, ["a" => 2], null, true);
+        [$key, $value] = CollectionUtility::findFirstWhereNot($items, ["a" => 2], null, true);
         $this->assertEquals("A", $key);
         $this->assertEquals(["a" => 1], $value);
 
@@ -381,7 +384,7 @@ class CollectionUtilityTest extends TestCase
             "a" => ["a" => 1],
             "B" => ["a" => 2],
         ];
-        list($key, $value) = CollectionUtility::findFirst($items, function ($value) {
+        [$key, $value] = CollectionUtility::findFirst($items, function ($value) {
             if ($value['a'] == 2) {
                 return true;
             }
@@ -396,7 +399,7 @@ class CollectionUtilityTest extends TestCase
     {
         $collection = [
             ["string" => "a", "nested" => ["number" => 1]],
-            ["string" => "d", "nested" => ["number" => 3]],
+            ["string" => "d", "nested" => ["number" => 4]],
             ["string" => "c", "nested" => ["number" => 3]],
             ["string" => "b", "nested" => ["number" => 2]],
         ];
@@ -405,8 +408,8 @@ class CollectionUtilityTest extends TestCase
         $this->assertEquals([
             ["string" => "a", "nested" => ["number" => 1]],
             ["string" => "b", "nested" => ["number" => 2]],
-            ["string" => "d", "nested" => ["number" => 3]],
             ["string" => "c", "nested" => ["number" => 3]],
+            ["string" => "d", "nested" => ["number" => 4]],
         ], CollectionUtility::sort($collection, "nested.number", null, SORT_NUMERIC));
 
         //Sort ascending string
@@ -414,7 +417,7 @@ class CollectionUtilityTest extends TestCase
             ["string" => "a", "nested" => ["number" => 1]],
             ["string" => "b", "nested" => ["number" => 2]],
             ["string" => "c", "nested" => ["number" => 3]],
-            ["string" => "d", "nested" => ["number" => 3]],
+            ["string" => "d", "nested" => ["number" => 4]],
         ], CollectionUtility::sort($collection, "string", null, SORT_FLAG_CASE | SORT_STRING));
 
         //Maintain indexes
@@ -422,13 +425,13 @@ class CollectionUtilityTest extends TestCase
             0 => ["string" => "a", "nested" => ["number" => 1]],
             3 => ["string" => "b", "nested" => ["number" => 2]],
             2 => ["string" => "c", "nested" => ["number" => 3]],
-            1 => ["string" => "d", "nested" => ["number" => 3]],
+            1 => ["string" => "d", "nested" => ["number" => 4]],
         ], CollectionUtility::asort($collection, "string", null, SORT_FLAG_CASE | SORT_STRING));
 
         //Sort descending
         $this->assertEquals([
+            ["string" => "d", "nested" => ["number" => 4]],
             ["string" => "c", "nested" => ["number" => 3]],
-            ["string" => "d", "nested" => ["number" => 3]],
             ["string" => "b", "nested" => ["number" => 2]],
             ["string" => "a", "nested" => ["number" => 1]],
         ], CollectionUtility::sort($collection, "nested.number", CollectionUtility::SORT_DIRECTION_DESCENDING));
