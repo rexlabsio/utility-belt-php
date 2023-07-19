@@ -1,6 +1,9 @@
-<?php namespace Rexlabs\UtilityBelt\Tests;
+<?php
+
+namespace Rexlabs\UtilityBelt\Tests\Actual;
 
 use Rexlabs\UtilityBelt\ObjectUtility;
+use Rexlabs\UtilityBelt\Tests\TestCase;
 
 class ObjectUtilityTest extends TestCase
 {

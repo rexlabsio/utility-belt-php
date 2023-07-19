@@ -2,3 +2,8 @@
 vendor
 report
 build
+.phpunit.result.cache
+
+# libraries shouldn't lock dependencies
+composer.lock
+

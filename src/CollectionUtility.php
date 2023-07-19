@@ -245,19 +245,26 @@ class CollectionUtility
                 $matches = true;
                 foreach ($property_list as $key => $expected_value) {
                     //Ensure every value matches
+                    $actual_value = ArrayUtility::dotRead($entry, $key);
                     switch ($match_type) {
                         case self::MATCH_TYPE_CASE_INSENSITIVE:
-                            if (strtolower(ArrayUtility::dotRead($entry, $key)) !== strtolower($expected_value)) {
+                            $actual_value = is_string($actual_value) ?
+                                strtolower($actual_value) :
+                                $actual_value;
+                            $expected_value = is_string($expected_value) ?
+                                strtolower($expected_value) :
+                                $expected_value;
+                            if ($actual_value !== $expected_value) {
                                 $matches = false;
                             }
                             break;
                         case self::MATCH_TYPE_LOOSE:
-                            if (ArrayUtility::dotRead($entry, $key) != $expected_value) {
+                            if ($actual_value != $expected_value) {
                                 $matches = false;
                             }
                             break;
                         default:
-                            if (ArrayUtility::dotRead($entry, $key) !== $expected_value) {
+                            if ($actual_value !== $expected_value) {
                                 $matches = false;
                             }
                             break;

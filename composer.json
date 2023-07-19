@@ -17,11 +17,10 @@
   },
   "minimum-stability": "stable",
   "require":{
-    "php" : "^7.0"
+    "php" : "^7.4 || ^8.0"
   },
   "require-dev":{
-    "phpunit/phpunit": "^6.5",
-    "satooshi/php-coveralls": "^2.0"
+    "phpunit/phpunit": "^9"
   },
   "scripts":{
     "coverage":"phpunit --coverage-html ./report",
