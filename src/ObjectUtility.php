@@ -20,7 +20,7 @@ class ObjectUtility
      * @throws \InvalidArgumentException
      * @return array|mixed
      */
-    public static function castToArray($object, callable $uncastable_caster = null)
+    public static function castToArray($object, ?callable $uncastable_caster = null)
     {
         if (\is_array($object)) {
             return $object;

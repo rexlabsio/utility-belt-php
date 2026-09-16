@@ -159,7 +159,7 @@ class CollectionUtility
      *                                    base rules
      * @return array
      */
-    public static function castToArray(array $collection, callable $uncastable_caster = null): array
+    public static function castToArray(array $collection, ?callable $uncastable_caster = null): array
     {
         return array_map(function ($item) use ($uncastable_caster) {
             return ObjectUtility::castToArray($item, $uncastable_caster);
