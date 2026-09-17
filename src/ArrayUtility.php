@@ -107,12 +107,12 @@ class ArrayUtility
 
     /**
      * Write a value to a nested array and return the new array
-     * @param array  $array
+     * @param array|null $array
      * @param string $writeKey The write key e.g. "level1.level2.key"
      * @param mixed  $value    Value to write
      * @return array|bool Returns a new array containing the value (or boolean false on failure)
      */
-    public static function dotWrite(array $array = null, $writeKey, $value = null)
+    public static function dotWrite(?array $array, $writeKey, $value = null)
     {
         if (!\is_array($array)) {
             return false;
@@ -154,11 +154,11 @@ class ArrayUtility
 
     /**
      * Determine if a key exists within a nested array.
-     * @param array  $array
+     * @param array|null $array
      * @param string $findKey The key to find e.g. "level1.level2.key"
      * @return boolean True if the key exists (even if the value is null)
      */
-    public static function dotExists(array $array = null, $findKey): bool
+    public static function dotExists(?array $array, $findKey): bool
     {
         if (!\is_array($array)) {
             return false;
@@ -194,12 +194,12 @@ class ArrayUtility
 
     /**
      * Read a value from a nested array using a single string
-     * @param array  $array
+     * @param array|null $array
      * @param string $readKey       The read key e.g. "level1.level2.key"
      * @param mixed  $default_value Default value
      * @return mixed|null The value from the array or null
      */
-    public static function dotRead(array $array = null, $readKey, $default_value = null)
+    public static function dotRead(?array $array, $readKey, $default_value = null)
     {
         if (!\is_array($array)) {
             return $default_value;

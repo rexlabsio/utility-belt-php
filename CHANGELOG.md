@@ -2,6 +2,11 @@
 
 All notable changes to ```UtilityBelt``` will be noted in this file.
 
+## 4.2.0
+Now supports PHP 8.4 and 8.5
+### Fixes
+* Implicitly nullable parameters (deprecated in PHP 8.4) are declared nullable
+
 ## 4.0.0
 
 Now supports PHP 7.4, 8.0, 8.1, 8.2
